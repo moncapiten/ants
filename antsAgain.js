@@ -1,10 +1,11 @@
 
 let ant;
 
-let dotRadius = 25;
+let dotRadius = 15;
 
 
-let debugMode = true;
+let debugMode = false;
+let senseDebug = false;
 
 
 function setup() {
