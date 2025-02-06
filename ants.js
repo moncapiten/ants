@@ -1,108 +1,88 @@
 class Ant{
  
   constructor(_x, _y, _vx, _vy){
-    this.x = _x;
-    this.y = _y;
-    this.vx = _vx;
-    this.vy = _vy;
-    
+
+    this.pos = createVector(_x, _y);
+    this.vel = createVector(_vx, _vy);
+
     this.d = 5;
     this.senseRadius = 10;
     this.senseAngle = PI/4;
-//    this.senseAngle = PI/4;
     
-    this.randomStrength = 0.;
-    console.log(height);
-    
+    this.randomStrength = 0;
+  //   this.randomStrength = 0.2;
+
   }
  
-  
-  
-  
-  
-  sense(senseX, senseY, col){
-    senseX = int(senseX);
-    senseY = int(senseY);  
-   fill(col);
-//   ellipse(senseX, senseY, this.senseRadius, this.senseRadius);
-   loadPixels();
-   let row = (senseY) * width * 4;
-   let cols = senseX * 4;
-   let blueIndex = row + cols + 2;
-   if( pixels[blueIndex] == 17 ){
-     console.log(col.toString());
-     console.log(pixels[blueIndex]);
-//     console.log(blueIndex);
-     console.log(".------.");
-//     pixels[blueIndex] = 255;
-//     updatePixels();
-   }
-   
- }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- update(){
-   this.vx += random(-1, 1) * this.randomStrength;
-   this.vy += random(-1, 1) * this.randomStrength;
-   if(this.vx > 3){ this.vx = 3; }
-   if(this.vx < -3){ this.vx = -3; }
-   if(this.vy > 3){ this.vy = 3; }
-   if(this.vy < -3){ this.vy = -3; }
-   
-   let newx = this.x + this.vx;
-   let newy = this.y + this.vy;
-   
-   if(newx < 0 || newx > width){
-     this.vx *= -1;
-     newx = this.x + this.vx;
-   }
-   if(newy < 0 || newy > height){
-     this.vy *= -1;
-     newy = this.y + this.vy;
-   }
+
+
+
+
+
+  update(){
+
+    this.vel.add(p5.Vector.random2D().mult(this.randomStrength));
+    this.vel.limit(1);
+
+    let newPos = p5.Vector.add(this.pos, this.vel);
+
+
+    if(newPos.x < 0 || newPos.x > width){
+      this.vel.x *= -1;
+    }
+    if(newPos.y < 0 || newPos.y > height){
+      this.vel.y *= -1;
+    }
+
+    newPos = p5.Vector.add(this.pos, this.vel);
+    this.pos = newPos;
    
    
-   
-   
-   
-   
-   let velModifier = 50000000;
-   this.sense(this.x + (this.vx*velModifier * cos(this.senseAngle) + this.vy*velModifier * -sin(this.senseAngle)), this.y + (this.vx*velModifier*sin(this.senseAngle) + this.vy*velModifier*cos(this.senseAngle)), color("#0f0") );
-   this.sense(this.x + this.vx*velModifier, this.y + this.vy*velModifier, color("#f00"));
-//   this.sense(this.x + (this.vx*velModifier * cos(this.senseAngle) + this.vy*velModifier * sin(this.senseAngle)), this.y + (this.vy*velModifier*-sin(this.senseAngle) + this.vx*velModifier*cos(this.senseAngle)), color("#00f") );
-   this.sense(this.x + (this.vx*velModifier * cos(this.senseAngle) + this.vy*velModifier * sin(this.senseAngle)), this.y + (this.vx*velModifier*-sin(this.senseAngle) + this.vy*velModifier*cos(this.senseAngle)), color("#00f") );
-   
-   
-   
-   this.x = newx;
-   this.y = newy; 
-   
-   
-   
-   //console.log(this.vx);
-   //console.log(this.vy);
-   //console.log("------");
-   
- }
- 
- dis(){
-   noStroke();
-   fill(200);
-   ellipse(this.x, this.y, this.d, this.d);
- }
+    let velModifier = 500000000;
+//    let velModifier = 30;
+    this.sense( p5.Vector.add( this.pos, p5.Vector.mult(this.vel, velModifier) ), color('#f00'));
+    this.sense( p5.Vector.add( this.pos, p5.Vector.mult(this.vel, velModifier).rotate(this.senseAngle) ), color('#0f0'));
+    this.sense( p5.Vector.add( this.pos, p5.Vector.mult(this.vel, velModifier).rotate(-this.senseAngle) ), color('#00f'));
+
+
+    if(debugMode){
+      console.log(this.pos);
+      console.log(this.vel);
+    }
+
+
+    
+  }
+
+
+
+  sense(sensePos, col){
+    sensePos.set(int(sensePos.x), int(sensePos.y));
+    
+    if(debugMode){
+      fill(col);
+      ellipse(sensePos.x, sensePos.y, this.senseRadius, this.senseRadius);
+    }
+
+    loadPixels();
+    let tempRow = sensePos.y * width * 4;
+    let tempCol = sensePos.x * 4;
+    let blueIndex = tempRow + tempCol + 2;
+    if(pixels[blueIndex] == 17){
+      console.log(col.toString());
+      console.log(pixels[blueIndex]);
+      console.log("------");
+    }
+
+  }
+
+
+
+  dis(){
+    noStroke();
+    fill(200);
+    ellipse(this.pos.x, this.pos.y, this.d, this.d);
+  }
  
  
  
