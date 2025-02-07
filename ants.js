@@ -108,7 +108,7 @@ class Ant{
           }
 
           let tempDist = p5.Vector.sub(sensePos, this.pos);
-          this.vel.add(p5.Vector.mult( tempDist, tempDist.mag));
+          this.vel.add(p5.Vector.mult( tempDist, 1/tempDist.mag));
           this.status = "eating";
           break;
         }
@@ -134,7 +134,7 @@ class Ant{
           }
 
           let tempDist = p5.Vector.sub(sensePos, this.pos);
-          this.vel.add(p5.Vector.mult( tempDist, tempDist.mag));
+          this.vel.add(p5.Vector.mult( tempDist, (1/tempDist.mag)**2));
           this.status = "hunting";
           break;
         }
@@ -147,7 +147,7 @@ class Ant{
           }
 
           let tempDist = p5.Vector.sub(this.pos, sensePos);
-          this.vel.add(p5.Vector.mult( tempDist, tempDist.mag*2));
+          this.vel.add(p5.Vector.mult( tempDist, (1/(tempDist.mag*2)**2)));
           this.status = "inDanger";
           this.stepCounter = 0;
           break;
