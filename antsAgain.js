@@ -1,7 +1,10 @@
 
 
-let antCounter = 5, formicary = [];
-let dotCounter = 50, polkaDots = [];
+let OGAntCounter = 5;
+let OGDotCounter = 50;
+
+let antCounter = OGAntCounter, formicary = [];
+let dotCounter = OGDotCounter, polkaDots = [];
 
 //let ant;
 

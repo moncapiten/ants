@@ -2,16 +2,10 @@ function mouseClicked(){
 
   switch(kind){
     case "food":
-//      fill('#a7a711');
-//      noStroke();
-//      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      polkaDots.push(new Dot(mouseX, mouseY, "food"));
+      addFoodDot();
       break;
     case "danger":
-//      fill('#f70000');
-//      noStroke();
-//      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      polkaDots.push(new Dot(mouseX, mouseY, "danger"));
+      addDangerDot();
       break
   }
   
@@ -37,5 +31,11 @@ function keyPressed(){
   }
   if(key == 'g'){
     kind = "danger";
+  }
+  if(key == 'ArrowUp'){
+    addAnt();
+  }
+  if(key == 'ArrowDown'){
+    removeAnt();
   }
 }

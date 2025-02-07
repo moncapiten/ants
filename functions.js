@@ -1,5 +1,7 @@
 function startOver(){
 
+    antCounter = OGAntCounter;
+    dotCounter = OGDotCounter;
     formicary = [];
     polkaDots = [];
 
@@ -19,7 +21,28 @@ function startOver(){
         polkaDots.push(new Dot(random(width), random(height), "danger"));
     }
 
+}
 
 
+function addAnt(){
+    let tempVel = p5.Vector.random2D().mult(random(0.1, 0.5));
+    let ant = new Ant(random(width), random(height), tempVel.x, tempVel.y);
+    formicary.push(ant);
+    antCounter++;
+}
 
+function removeAnt(){
+    formicary.pop();
+    antCounter--;
+}
+
+
+function addFoodDot(){
+    polkaDots.push(new Dot(mouseX, mouseY, "food"));
+    dotCounter++;
+}
+
+function addDangerDot(){
+    polkaDots.push(new Dot(mouseX, mouseY, "danger"));
+    dotCounter++;
 }
