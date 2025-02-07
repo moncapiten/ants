@@ -4,9 +4,10 @@ class Ant{
 
     this.pos = createVector(_x, _y);
     this.vel = createVector(_vx, _vy);
+    this.velLim = 5;
 
     this.d = 5;
-    this.senseRadius = 15 ;
+    this.senseRadius = 20 ;
     this.senseAngle = PI/4;
 
     this.status = "idle";
@@ -15,7 +16,7 @@ class Ant{
     this.stepsThr = 300;
     
 //    this.randomStrength = 0;
-     this.randomStrength = 0.1;
+     this.randomStrength = 0.7;
 
   }
  
@@ -30,7 +31,7 @@ class Ant{
       this.status = "idle";
     }
 
-    let velModifier = 30;
+    let velModifier = 10;
 //    let velModifier = 500000000;
     this.sense( p5.Vector.add( this.pos, p5.Vector.mult(this.vel, velModifier) ), color('#f00'));
     this.sense( p5.Vector.add( this.pos, p5.Vector.mult(this.vel, velModifier).rotate(this.senseAngle) ), color('#0f0'));
@@ -40,7 +41,7 @@ class Ant{
 
 
     this.vel.add(p5.Vector.random2D().mult(this.randomStrength));
-    this.vel.limit(1);
+    this.vel.limit(this.velLim);
 
     let newPos = p5.Vector.add(this.pos, this.vel);
 
@@ -79,9 +80,9 @@ class Ant{
     sensePos.set(int(sensePos.x), int(sensePos.y));
     
     if(senseDebug){
-      stroke(col);
-      noFill();
-//      fill(col);
+//      stroke(col);
+//      noFill();
+      fill(col);
       ellipse(sensePos.x, sensePos.y, this.senseRadius, this.senseRadius);
     }
 

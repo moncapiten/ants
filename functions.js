@@ -1,52 +1,25 @@
-function mouseClicked(){
+function startOver(){
 
-  
-  /*
-  switch(mouseButton){
-    case LEFT:
-      fill('#a7a711');
-      noStroke();
-      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      console.log("left");
-      break;
-    case CENTER:
-      fill('#ff0000');
-      noStroke();
-      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      console.log("right");
-      break;
-  }
-  */
+    formicary = [];
+    polkaDots = [];
 
+    foodRatio = random(0.3, 0.7);
+    console.log(foodRatio);
 
-  switch(kind){
-    case "food":
-      fill('#a7a711');
-      noStroke();
-      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      break;
-    case "danger":
-      fill('#f70000');
-      noStroke();
-      ellipse(mouseX, mouseY, dotRadius, dotRadius);
-      break
-  }
-  
-  
-}
+    for(let i = 0; i < antCounter; i++){
+        let tempVel = p5.Vector.random2D().mult(random(0.1, 0.5));
+        let ant = new Ant(random(width), random(height), tempVel.x, tempVel.y);
+        formicary.push(ant);
+    }
+
+    for(let i = 0; i < int(dotCounter * foodRatio); i++){
+        polkaDots.push(new Dot(random(width), random(height), "food"));
+    }
+    for(let i = int(dotCounter * foodRatio); i < dotCounter; i++){
+        polkaDots.push(new Dot(random(width), random(height), "danger"));
+    }
 
 
-function keyPressed(){
-  if(key == 'd'){
-    debugMode = !debugMode;
-  }
-  if(key == 's'){
-    senseDebug = !senseDebug;
-  }
-  if(key == 'f'){
-    kind = "food";
-  }
-  if(key == 'g'){
-    kind = "danger";
-  }
+
+
 }
