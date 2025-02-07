@@ -4,6 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  
+
+  <title>Dipshit Formicary</title>
+  <link rel="stylesheet" href="../template/fallingSandStyle.css">
+  <link rel="stylesheet" href="../template/buttonStyle.css">
+  <link rel="stylesheet" href="../template/inputStyle.css">
+
+  
+</head>
+
+<body>
+  <h1 class="titolo">Dipshit Formicary</h1>
+  <p>Here you can see a simulation of ants, the little white dots are Ants, the big circles are either food( yellow) or danger( red). </p>
+  <p>The ants will change color depending on their state, idling they'll be grey, they will become yellow when hunting, green while eating, blue if full and red if they are running away.</p>
+  <p>There are commands for you to try, namely you can use the mouse to add or dangers( press <i>f</i> or <i>g</i> to switch between the two), press <i>c</i> to restart the simulation, <i>￬</i> or <i>￪</i> to add and remove ant or <i>SPACEABR</i> to stop the simulation. You may also press <i>c</i> to restart it </p>
+  <!--  <ul>
+      <li>- p to pause the simulation</li>
+      <li>- c to reset the simulation</li>
+    </ul>
+  </p>-->
+  
+  <!-- <ul> -->
+    <!-- <li class="inputList"> <input type="button" id="randomStart">   This is the button to generate a random starting configuration  </li> -->
+    <!-- <li class="inputList">  <button class="button-64" role="button" id="randomStart"><span class="text">Random Start</span></button> </li> -->
+    <!-- <li class="inputList"> <input type="text" class="input-64" id="ruleIndex">  This is the input field for the rule number  </li> -->
+    <!--<li class="inputList"> <input type="button" class="button-64" id="infiniteScrolling"><span class="text">Infinite Scrolling</span>  This is the button to toggle infinite scrolling -> </li> -->
+    <!-- <li class="inputList">  <button class="button-64" role="button" id="infiniteScrolling"><span class="text">Infinite Scrolling</span></button> </li> -->
+  <!-- </ul> -->
+  
+
   <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
   <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
   <script language="javascript" type="text/javascript" src="ants.js"></script>
@@ -12,15 +46,6 @@
   <script language="javascript" type="text/javascript" src="interactions.js"></script>
   <script language="javascript" type="text/javascript" src="antsAgain.js"></script>
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
-
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-</head>
-
-<body>
+  <div class="canvasContainer" id ="holder"></div>
 </body>
 </html>

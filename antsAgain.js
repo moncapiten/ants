@@ -22,8 +22,15 @@ function setup() {
   //ant = new Ant(500, 500, 0, 0.0000001);
   //frameRate(24);
   
+  //createCanvas(1900, 1050);
+
+  let container = document.getElementById('holder');
+  var cnv = createCanvas(1800, 900);
+  //cnv.style('display', 'block', 'border-radius: 20px');
+  cnv.parent(container)
+
+
   pixelDensity(1);
-  createCanvas(1900, 1050);
   background(0);
   
   startOver();
