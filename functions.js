@@ -26,7 +26,7 @@ function mouseClicked(){
       ellipse(mouseX, mouseY, dotRadius, dotRadius);
       break;
     case "danger":
-      fill('#ff0000');
+      fill('#f70000');
       noStroke();
       ellipse(mouseX, mouseY, dotRadius, dotRadius);
       break

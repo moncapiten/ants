@@ -4,8 +4,9 @@ let ant;
 let dotRadius = 15;
 
 
-let debugMode = false;
+let debugMode = true;
 let senseDebug = false;
+let kind = "food";
 
 
 function setup() {
