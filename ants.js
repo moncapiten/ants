@@ -102,7 +102,7 @@ class Ant{
         let posStartingIndex = posIndex + i * width * 4 + j * 4;
         if(pixels[posStartingIndex] == 167 && pixels[posStartingIndex+1] == 167 && pixels[posStartingIndex+2] == 17 && (this.status == "idle" || this.status == "hunting" || this.status == "eating") ){
           if(debugMode){
-            console.log(col.toString());
+            console.log(col.toString()); 
             console.log(pixels[posStartingIndex]);
             console.log(".----.");
           }
