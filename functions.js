@@ -14,14 +14,23 @@ function startOver(){
         let ant = new Ant(randIntErval(5, width-5), randIntErval(5, height-5), tempVel.x, tempVel.y);
         formicary.push(ant);
     }
-
+/*
     for(let i = 0; i < int(dotCounter * foodRatio); i++){
         polkaDots.push(new Dot(randIntErval(15, width-15), randIntErval(15, height-15), "food"));
     }
     for(let i = int(dotCounter * foodRatio); i < dotCounter; i++){
         polkaDots.push(new Dot(randIntErval(15, width-15), randIntErval(15, height-15), "danger"));
     }
+*/
 
+    let tempDot;
+    for( let i = 0; i < dotCounter; i++){
+        if( random() < foodRatio){ tempDot = new Dot( randIntErval(15, width-15), randIntErval(15, height-15), "food" ) }
+        else { tempDot = new Dot( randIntErval(15, width-15), randIntErval(15, height-15), "danger" ) }
+        polkaDots.push(tempDot);
+
+
+    }
     // new polkaDots generation method ahead
 /*
     let ypes = ["food", "danger"];
@@ -57,4 +66,16 @@ function addFoodDot(){
 function addDangerDot(){
     polkaDots.push(new Dot(mouseX, mouseY, "danger"));
     dotCounter++;
+}
+
+function addPolkaDot(){
+    if( random() < foodRatio){ tempDot = new Dot( randIntErval(15, width-15), randIntErval(15, height-15), "food" ) }
+    else { tempDot = new Dot( randIntErval(15, width-15), randIntErval(15, height-15), "danger" ) }
+    polkaDots.push(tempDot)
+    dotCounter++;
+}
+
+function removePolkaDot(){
+    polkaDots.pop();
+    dotCounter--;
 }

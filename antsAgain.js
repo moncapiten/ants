@@ -1,7 +1,7 @@
 let webGL, p2d;
 
-let OGAntCounter = 5;
-let OGDotCounter = 50;
+let OGAntCounter = 7;
+let OGDotCounter = 70;
 
 let antCounter = OGAntCounter, formicary = [];
 let dotCounter = OGDotCounter, polkaDots = [];

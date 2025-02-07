@@ -38,10 +38,12 @@ function keyPressed(){
   if(key == 'ArrowDown'){
     removeAnt();
   }
-  if(key == 'ArrowLeft'){
-    console.log("WIP REMOVE POLKADOT - NEED MERGE ARRAYS")
-  }
   if(key == 'ArrowRight'){
-    console.log("ADD REMOVE POLKADOT - NEED MERGE ARRAYS")
+    addPolkaDot();
+//    console.log("WIP REMOVE POLKADOT - NEED MERGE ARRAYS")
+  }
+  if(key == 'ArrowLeft'){
+    removePolkaDot();
+    //console.log("ADD REMOVE POLKADOT - NEED MERGE ARRAYS")
   }
 }
