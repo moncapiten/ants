@@ -7,13 +7,15 @@ class Ant{
     this.velLim = 5;
 
     this.d = 5;
+    this.half_d = 2;
     this.senseRadius = 20 ;
     this.senseAngle = PI/4;
 
     this.status = "idle";
     this.lastStatus = "idle";
     this.stepCounter = 0;
-    this.stepsThr = 300;
+    this.stepsFullnessThr = 150;
+    this.stepsDangerThr = 70;
     
 //    this.randomStrength = 0;
      this.randomStrength = 0.7;
@@ -27,7 +29,7 @@ class Ant{
 
   update(){
     this.lastStatus = this.status;
-    if(this.status != "full" || (this.status == "full" && this.stepCounter > this.stepsThr) ){
+    if( ( this.status != "full" || (this.status == "full" && this.stepCounter > this.stepsFullnessThr) ) && ( this.status != "inDanger" || (this.status == "inDanger" && this.stepCounter > this.stepsDangerThr))){
       this.status = "idle";
     }
 
@@ -46,10 +48,10 @@ class Ant{
     let newPos = p5.Vector.add(this.pos, this.vel);
 
 
-    if(newPos.x < 0 || newPos.x > width){
+    if(newPos.x-this.half_d < 0 || newPos.x+this.half_d > width){
       this.vel.x *= -1;
     }
-    if(newPos.y < 0 || newPos.y > height){
+    if(newPos.y-this.half_d < 0 || newPos.y+this.half_d > height){
       this.vel.y *= -1;
     }
 
@@ -82,9 +84,11 @@ class Ant{
     if(senseDebug){
 //      stroke(col);
 //      noFill();
-      fill(col);
-      ellipse(sensePos.x, sensePos.y, this.senseRadius, this.senseRadius);
+      webGL.fill(col);
+      webGL.ellipse(sensePos.x-0.5*width, sensePos.y-0.5*height, this.senseRadius, this.senseRadius);
     }
+    webGL.reset();
+    p2d.image(webGL, 0, 0, width, height);
 
     loadPixels();
     
@@ -143,8 +147,9 @@ class Ant{
           }
 
           let tempDist = p5.Vector.sub(this.pos, sensePos);
-          this.vel.add(p5.Vector.mult( tempDist, tempDist.mag));
+          this.vel.add(p5.Vector.mult( tempDist, tempDist.mag*2));
           this.status = "inDanger";
+          this.stepCounter = 0;
           break;
         }
 
@@ -165,26 +170,28 @@ class Ant{
 
 
   dis(){
-    noStroke();
+    webGL.noStroke();
     switch(this.status){
       case "idle":
-        fill(200); // gray
+        webGL.fill(200); // gray
         break;
       case "hunting":
-        fill(255, 255, 0); // yellow
+        webGL.fill(255, 255, 0); // yellow
         break;
       case "eating":
-        fill(0, 255, 0); // green
+        webGL.fill(0, 255, 0); // green
         break;
       case "inDanger":
-        fill(255, 0, 0); // red
+        webGL.fill(255, 0, 0); // red
         break;
       case "full":
-        fill(0, 0, 255); // blue
+        webGL.fill(0, 0, 255); // blue
         break;
     }
 //    fill(200);
-    ellipse(this.pos.x, this.pos.y, this.d, this.d);
+    webGL.ellipse(this.pos.x-0.5*width, this.pos.y-0.5*height, this.d, this.d);
+    webGL.reset();
+    p2d.image(webGL, 0, 0, width, height);
   }
  
  

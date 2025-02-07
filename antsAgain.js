@@ -1,4 +1,4 @@
-
+let webGL, p2d;
 
 let OGAntCounter = 5;
 let OGDotCounter = 50;
@@ -26,6 +26,9 @@ function setup() {
 
   let container = document.getElementById('holder');
   var cnv = createCanvas(1800, 900);
+
+  webGL = createGraphics(1800, 900, WEBGL);
+  p2d = createGraphics(innerWidth, height);
   //cnv.style('display', 'block', 'border-radius: 20px');
   cnv.parent(container)
 
@@ -41,7 +44,7 @@ function setup() {
 
 
 function draw() {
-  background(0);
+  webGL.background(0);
 
 
   for(let i = 0; i < polkaDots.length; i++){
@@ -58,6 +61,6 @@ function draw() {
 //    ant.dis();
   }
 
-  
+  image(webGL, 0, 0, width, height);
 
 }

@@ -12,16 +12,18 @@ class Dot{
   show(){
     switch(this.type){
       case "food":
-        fill('#a7a711');
-        noStroke();
-        ellipse(this.pos.x, this.pos.y, this.d, this.d);
+        webGL.fill('#a7a711');
+        webGL.noStroke();
+        webGL.ellipse(this.pos.x-width*0.5, this.pos.y-height*0.5, this.d, this.d);
         break;
       case "danger":
-        fill('#f70000');
-        noStroke();
-        ellipse(this.pos.x, this.pos.y, this.d, this.d);
+        webGL.fill('#f70000');
+        webGL.noStroke();
+        webGL.ellipse(this.pos.x - width*0.5, this.pos.y-height*0.5, this.d, this.d);
         break;
     }
+    webGL.reset();
+    p2d.image(webGL, 0, 0, width, height);
   }
   
   
